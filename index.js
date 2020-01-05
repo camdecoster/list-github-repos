@@ -22,25 +22,21 @@ function displayResults(results) {
     // Clear out previous results
     $('#js-results-list').empty();
 
-    // const results = [
-    //     {
-    //         name: 'test-repo',
-    //         html_url: 'https://github.com/camdecoster/futurama-quiz'
-    //     },
-    //     {
-    //         name: 'test-repo2',
-    //         html_url: 'https://github.com/camdecoster/github-pages-demo'
-    //     }
-    // ];
-
-    // For each item in results, extract name and repo URL,
-    // create string with that info, add that info to results
-    // list in DOM
-    for (let i = 0; i < results.length; i++) {
-        $('#js-results-list').append(
-            `<li>${results[i].name}<br>
+    // Only add results if user has repos
+    if (results.length > 0) {
+        // For each item in results, extract name and repo URL,
+        // create string with that info, add that info to results
+        // list in DOM
+        for (let i = 0; i < results.length; i++) {
+            $('#js-results-list').append(
+                `<li>${results[i].name}<br>
             <a href="${results[i].html_url}">${results[i].html_url}</a></li>`
-        );
+            );
+        }
+    }
+    // Otherwise state no repos exist
+    else {
+        $('#js-results-list').append('<li>User has no public repositories</li>');
     }
     // Change class to display results list
     $('#js-results').removeClass('hidden'); 
